@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="sample.Controller">
+  <children>
+    <VBox prefHeight="400.0000999999975" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <children>
+        <TabPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="355.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE" VBox.vgrow="ALWAYS">
+          <tabs>
+            <Tab text="Map">
+              <content>
+                <AnchorPane id="Content" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                  <children>
+                    <VBox prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                      <children>
+                        <HBox prefHeight="51.0" prefWidth="600.0" spacing="10.0" VBox.margin="$x1">
+                          <children>
+                            <TextField id="textFieldUrl" fx:id="imageUrlTextField" prefHeight="37.0" prefWidth="393.0" HBox.hgrow="ALWAYS">
+                              <HBox.margin>
+                                <Insets right="10.0" />
+                              </HBox.margin>
+                            </TextField>
+                            <Button fx:id="setImageButton" mnemonicParsing="false" onAction="#onSetImageButtonClick" prefHeight="31.0" prefWidth="166.0" text="Set Image" />
+                            <Button fx:id="loadMapButton" mnemonicParsing="false" onAction="#onLoadMapButtonClick" prefHeight="31.0" prefWidth="150.0" text="Load Map">
+                              <HBox.margin>
+                                <Insets fx:id="x1" />
+                              </HBox.margin>
+                            </Button>
+                          </children>
+                          <padding>
+                            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" fx:id="x2" />
+                          </padding>
+                        </HBox>
+                        <AnchorPane prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+                          <children>
+                            <ImageView fx:id="imageView" fitHeight="252.0" fitWidth="601.0" pickOnBounds="true" preserveRatio="true" scaleX="1.0" scaleY="1.0" scaleZ="1.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                          </children>
+                        </AnchorPane>
+                      </children>
+                    </VBox>
+                  </children>
+                </AnchorPane>
+              </content>
+            </Tab>
+            <Tab text="Settings">
+              <content>
+                <AnchorPane id="Content" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                  <children>
+                    <VBox prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                      <children>
+                        <GridPane padding="$x2" prefHeight="103.0" prefWidth="600.0">
+                          <children>
+                            <Label text="App ID" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+                            <TextField fx:id="appIdTextField" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+                            <Label text="App Code" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+                            <TextField fx:id="appCodeTextField" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                          </children>
+                          <columnConstraints>
+                            <ColumnConstraints fillWidth="true" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                            <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" prefWidth="100.0" />
+                          </columnConstraints>
+                          <rowConstraints>
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                          </rowConstraints>
+                        </GridPane>
+                        <AnchorPane prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS" />
+                      </children>
+                    </VBox>
+                  </children>
+                </AnchorPane>
+              </content>
+            </Tab>
+          </tabs>
+          <VBox.margin>
+            <Insets fx:id="x1" />
+          </VBox.margin>
+        </TabPane>
+        <AnchorPane minHeight="51.0" prefHeight="51.0" prefWidth="600.0">
+          <children>
+            <HBox alignment="CENTER_RIGHT" padding="$x2" prefHeight="100.0" prefWidth="200.0" spacing="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+              <children>
+                <Label fx:id="messageLabel" text="Message Here" HBox.hgrow="ALWAYS" />
+                <Button fx:id="hideMessageButton" mnemonicParsing="false" onAction="#onHideMessageButtonClick" prefHeight="31.0" text="Hide" />
+              </children>
+            </HBox>
+          </children>
+        </AnchorPane>
+      </children>
+    </VBox>
+  </children>
+</AnchorPane>
