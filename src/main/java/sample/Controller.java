@@ -17,6 +17,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.Optional;
 import java.util.ResourceBundle;
+import java.io.InputStream;
 
 public class Controller implements Initializable {
 
@@ -83,9 +84,15 @@ public class Controller implements Initializable {
     public void initialize(URL fxmlFileLocation, ResourceBundle resources) {
         assert button1 != null : "fx:id=\"myButton\" was not injected: check your FXML file 'simple.fxml'.";
 
+        URL configIs = this.getClass().getResource("/here.config.json");
+        if (configIs == null) {
+            System.err.println("here.config.json file not found.");
+            return;
+        }
+        System.out.println(configIs);
         ObjectMapper om = new ObjectMapper();
         try {
-            Config config = om.readValue(this.getClass().getResource("/here.config.json"), Config.class);
+            Config config = om.readValue(configIs, Config.class);
             appIdTextField.setText(config.appId);
             appCodeTextField.setText(config.appCode);
         } catch (IOException e) {
