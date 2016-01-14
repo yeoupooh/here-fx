@@ -1,16 +1,21 @@
 package sample;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.canvas.Canvas;
+import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 
 import java.io.IOException;
@@ -45,6 +50,15 @@ public class Controller implements Initializable {
     @FXML // fx:id="hideMessageButton"
     private Button hideMessageButton; // Value injected by FXMLLoader
 
+    @FXML // fx:id="canvas"
+    private Canvas canvas; // Value injected by FXMLLoader
+
+//    @FXML // fx:id="canvasAnchorPane"
+//    private AnchorPane canvasAnchorPane; // Value injected by FXMLLoader
+
+    @FXML
+    public GraphicsContext gc;
+
     @FXML
     private void onSetImageButtonClick(ActionEvent ae) {
         setImage();
@@ -71,18 +85,25 @@ public class Controller implements Initializable {
         setImage();
     }
 
+
+    private Image canvasImage;
+
     private void setImage() {
         if (imageUrlTextField.getText().isEmpty()) {
             messageLabel.setText("No Image URL. Please set Image URL.");
             return;
         }
-        imageView.setImage(new Image(imageUrlTextField.getText()));
+//        imageView.setImage(new Image(imageUrlTextField.getText()));
+        canvasImage = new Image(imageUrlTextField.getText());
+        redrawCanvas();
         System.out.println("url=" + imageUrlTextField.getText());
     }
 
     @Override // This method is called by the FXMLLoader when initialization is complete
     public void initialize(URL fxmlFileLocation, ResourceBundle resources) {
         assert button1 != null : "fx:id=\"myButton\" was not injected: check your FXML file 'simple.fxml'.";
+
+        setupCanvas();
 
         URL configIs = this.getClass().getResource("/here.config.json");
         if (configIs == null) {
@@ -99,5 +120,31 @@ public class Controller implements Initializable {
             e.printStackTrace();
         }
 
+    }
+
+    private void setupCanvas() {
+        gc = canvas.getGraphicsContext2D();
+//        canvasAnchorPane.prefWidthProperty().addListener(new ChangeListener<Number>() {
+//            @Override
+//            public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
+//                System.out.println("width");
+//                canvas.setWidth(newValue.doubleValue());
+//                redrawCanvas();
+//            }
+//        });
+//        canvasAnchorPane.prefHeightProperty().addListener(new ChangeListener<Number>() {
+//            @Override
+//            public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
+//                System.out.println("height");
+//                canvas.setHeight(newValue.doubleValue());
+//                redrawCanvas();
+//            }
+//        });
+    }
+
+    private void redrawCanvas() {
+        if (canvasImage != null) {
+            gc.drawImage(canvasImage, 0, 0);
+        }
     }
 }
